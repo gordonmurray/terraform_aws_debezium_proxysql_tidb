@@ -1,0 +1,35 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "profile": "{{user `profile`}}",
+            "region": "{{user `region`}}",
+            "source_ami": "{{user `base_ami_id`}}",
+            "instance_type": "{{user `instance_type`}}",
+            "force_deregister": "true",
+            "force_delete_snapshot": "true",
+            "ssh_username": "ubuntu",
+            "ami_name": "proxysql",
+            "ami_regions": [
+                "{{user `region`}}"
+            ],
+            "tags": {
+                "Name": "proxysql_instance"
+            }
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "echo 'Waiting for cloud-init'; while [ ! -f /var/lib/cloud/instance/boot-finished ]; do sleep 1; done; echo 'Done'",
+                "echo set debconf to Noninteractive",
+                "echo 'debconf debconf/frontend select Noninteractive' | sudo debconf-set-selections",
+                "sudo apt-get update",
+                "sudo apt-get install mysql-client -y",
+                "wget https://github.com/sysown/proxysql/releases/download/v2.5.2/proxysql_2.5.2-ubuntu22_arm64.deb",
+                "sudo dpkg -i proxysql_2.5.2-ubuntu22_arm64.deb"
+            ]
+        }
+    ]
+}
