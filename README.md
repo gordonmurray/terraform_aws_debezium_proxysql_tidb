@@ -5,7 +5,9 @@
 
 
 
-### Estimated costs
+### Estimated monthly costs
+
+(Powered vy Infracost)
 
 ```
 Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
@@ -80,4 +82,24 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
   ∙ 1 x aws_db_subnet_group
   ∙ 1 x aws_key_pair
   ∙ 1 x aws_msk_configuration
+```
+
+### Security
+
+(powered by TFsec)
+
+```
+  results
+  ──────────────────────────────────────────
+  passed               37
+  ignored              0
+  critical             0
+  high                 1
+  medium               0
+  low                  1
+
+  37 passed, 2 potential problem(s) detected.
+
+* Result #1 HIGH Cluster allows plaintext communication.
+* Result #2 LOW Instance does not have performance insights enabled.
 ```
