@@ -4,7 +4,7 @@
             "type": "amazon-ebs",
             "profile": "{{user `profile`}}",
             "region": "{{user `region`}}",
-            "source_ami": "ami-06d94a781b544c133",
+            "source_ami": "{{user `base_ami_id`}}",
             "instance_type": "{{user `instance_type`}}",
             "force_deregister": "true",
             "force_delete_snapshot": "true",
@@ -33,22 +33,7 @@
                 "###",
                 "wget https://repo1.maven.org/maven2/io/debezium/debezium-connector-mysql/2.1.2.Final/debezium-connector-mysql-2.1.2.Final-plugin.tar.gz",
                 "tar xzf debezium-connector-mysql-2.1.2.Final-plugin.tar.gz",
-                "sudo mv debezium-connector-mysql /usr/share/java/",
-                "###",
-                "wget https://github.com/Apicurio/apicurio-registry/releases/download/2.4.1.Final/apicurio-registry-storage-kafkasql-2.4.1.Final-all.tar.gz",
-                "tar xzf apicurio-registry-storage-kafkasql-2.4.1.Final-all.tar.gz",
-                "sudo mv apicurio-registry-storage-kafkasql-2.4.1.Final-runner.jar /home/ubuntu/",
-                "###",
-                "wget https://repo1.maven.org/maven2/io/apicurio/apicurio-registry-distro-connect-converter/2.4.1.Final/apicurio-registry-distro-connect-converter-2.4.1.Final.tar.gz",
-                "sudo mkdir -p /usr/share/java/apicurio-registry-connect-converter",
-                "sudo tar xzf apicurio-registry-distro-connect-converter-2.4.1.Final.tar.gz -C /usr/share/java/apicurio-registry-connect-converter",
-                "###",
-                "curl https://raw.githubusercontent.com/dwyl/english-words/master/words.txt -o /home/ubuntu/words.txt",
-                "###",
-                "curl -sq http://ksqldb-packages.s3.amazonaws.com/deb/0.28/archive.key | sudo apt-key add -",
-                "sudo add-apt-repository --yes \"deb http://ksqldb-packages.s3.amazonaws.com/deb/0.28 stable main\"",
-                "sudo apt-get update",
-                "sudo apt install confluent-ksqldb -y"
+                "sudo mv debezium-connector-mysql /usr/share/java/"
             ]
         },
         {
@@ -58,38 +43,13 @@
         },
         {
             "type": "file",
-            "source": "./files/registry.service",
-            "destination": "/home/ubuntu/registry.service"
-        },
-        {
-            "type": "file",
-            "source": "./files/ksqldb.service",
-            "destination": "/home/ubuntu/ksqldb.service"
-        },
-        {
-            "type": "file",
             "source": "./files/connect-distributed.properties",
             "destination": "/home/ubuntu/kafka/config/connect-distributed.properties"
         },
         {
             "type": "file",
-            "source": "./files/ksql-server.properties",
-            "destination": "/home/ubuntu/kafka/config/ksql-server.properties"
-        },
-        {
-            "type": "file",
             "source": "./files/connector.json",
             "destination": "/home/ubuntu/connector.json"
-        },
-        {
-            "type": "file",
-            "source": "./files/start_registry.sh",
-            "destination": "/home/ubuntu/start_registry.sh"
-        },
-        {
-            "type": "file",
-            "source": "./files/generate_data.sh",
-            "destination": "/home/ubuntu/generate_data.sh"
         }
     ]
 }
