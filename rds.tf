@@ -16,7 +16,7 @@ resource "aws_db_instance" "default" {
   allocated_storage            = 20
   storage_type                 = "gp2"
   engine                       = "mariadb"
-  engine_version               = "10.6.7"
+  engine_version               = "10.6.13"
   instance_class               = "db.t4g.micro"
   db_subnet_group_name         = aws_db_subnet_group.default.name
   username                     = "Admin"
