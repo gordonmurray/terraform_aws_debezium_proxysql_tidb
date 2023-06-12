@@ -14,7 +14,7 @@ To deploy this project you will need:
 
 ### Estimated monthly costs
 
-(Powered vy Infracost)
+(Powered by Infracost)
 
 ```
 Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
