@@ -1,8 +1,15 @@
 # Terraform AWS, Debezium, proxySQL and TiDB
 
- Employ Debezium, Kafka, and ProxySQL to facilitate a seamless shift from MySQL/MariaDB to TiDB
+ Deploy Debezium and Kafka to perform ongoing change data capture (CDC) from your existing mysql/mariadb database to populate tiDB. Then use ProxySQL to allow you to test the features and performance of TiDB alongside your existing mySQL or MariaDB database. Write data to one database and read from the other.
 
+![Debezium, proxySQL and TiDB Diagram](files/tiDB.png "Debezium, proxySQL and TiDB Diagram")
 
+To deploy this project you will need:
+
+* [Packer](https://www.packer.io/) (tested on v1.8.5)
+* [Terraform](https://www.terraform.io/) (tested on v1.4.2)
+* [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) ( tested on v2.14.2)
+* An [AWS account](https://aws.amazon.com/free/)
 
 
 ### Estimated monthly costs
