@@ -11,7 +11,7 @@ data "aws_ami" "debezium" {
 
 resource "aws_instance" "debezium" {
   ami                     = data.aws_ami.debezium.id
-  instance_type           = "t3.small"
+  instance_type           = "t4g.small"
   key_name                = aws_key_pair.key.key_name
   subnet_id               = var.subnets[0]
   vpc_security_group_ids  = [aws_security_group.debezium.id]
