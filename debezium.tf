@@ -13,7 +13,7 @@ resource "aws_instance" "debezium" {
   ami                     = data.aws_ami.debezium.id
   instance_type           = "t3.small"
   key_name                = aws_key_pair.key.key_name
-  subnet_id               = aws_subnet.subnet-1a.id
+  subnet_id               = var.subnets[0]
   vpc_security_group_ids  = [aws_security_group.debezium.id]
   disable_api_termination = true
 

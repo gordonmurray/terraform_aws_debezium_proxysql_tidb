@@ -1,20 +1,20 @@
-data "aws_ami" "packer" {
+data "aws_ami" "proxysql" {
   most_recent = true
 
   filter {
     name   = "name"
-    values = ["packer*"]
+    values = ["proxysql*"]
   }
 
   owners = [var.aws_account_id]
 }
 
-resource "aws_instance" "packer" {
-  ami                     = data.aws_ami.packer.id
+resource "aws_instance" "proxysql" {
+  ami                     = data.aws_ami.proxysql.id
   instance_type           = "t3.small"
   key_name                = aws_key_pair.key.key_name
-  subnet_id               = aws_subnet.subnet-1a.id
-  vpc_security_group_ids  = [aws_security_group.packer.id]
+  subnet_id               = var.subnets[0]
+  vpc_security_group_ids  = [aws_security_group.proxysql.id]
   disable_api_termination = true
 
   root_block_device {

@@ -4,13 +4,8 @@ resource "random_password" "password" {
 }
 
 resource "aws_db_subnet_group" "default" {
-  name = "rds_subnet_group"
-  subnet_ids = [
-    aws_subnet.subnet-1a.id,
-    aws_subnet.subnet-1b.id,
-    aws_subnet.subnet-1c.id,
-  ]
-
+  name       = "rds_subnet_group"
+  subnet_ids = var.subnets
   tags = {
     Name = var.default_tag
   }
