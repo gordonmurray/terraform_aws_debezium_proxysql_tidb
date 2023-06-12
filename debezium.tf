@@ -28,7 +28,7 @@ resource "aws_instance" "debezium" {
   }
 
   tags = {
-    Name = var.default_tag
+    Name = "Debezium"
   }
 
   metadata_options {

@@ -28,7 +28,7 @@ resource "aws_instance" "proxysql" {
   }
 
   tags = {
-    Name = var.default_tag
+    Name = "ProxySQL"
   }
 
   metadata_options {
