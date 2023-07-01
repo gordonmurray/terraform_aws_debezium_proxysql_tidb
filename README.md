@@ -34,12 +34,12 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
  aws_instance.debezium
  ├─ Instance usage (Linux/UNIX, on-demand, t4g.small)                     730  hours                         $13.43
  └─ root_block_device
-    └─ Storage (general purpose SSD, gp2)                                  10  GB                             $1.10
+    └─ Storage (general purpose SSD, gp2)                                 100  GB                            $11.00
 
  aws_instance.proxysql
  ├─ Instance usage (Linux/UNIX, on-demand, t4g.small)                     730  hours                         $13.43
  └─ root_block_device
-    └─ Storage (general purpose SSD, gp2)                                  10  GB                             $1.10
+    └─ Storage (general purpose SSD, gp2)                                  50  GB                             $5.50
 
  aws_kms_key.cloudwatch_key
  ├─ Customer master key                                                     1  months                         $1.00
@@ -66,7 +66,8 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
  └─ RSA GenerateDataKeyPair requests                        Monthly cost depends on usage: $0.10 per 10k requests
 
  aws_msk_cluster.kafka
- └─ Instance (kafka.t3.small)                                           2,190  hours                        $109.28
+ ├─ Instance (kafka.t3.small)                                           2,190  hours                        $109.28
+ └─ Storage                                                               150  GB                            $16.50
 
  aws_secretsmanager_secret.example
  ├─ Secret                                                                  1  months                         $0.40
@@ -76,7 +77,7 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
  ├─ Secret                                                                  1  months                         $0.40
  └─ API requests                                            Monthly cost depends on usage: $0.05 per 10k requests
 
- OVERALL TOTAL                                                                                              $158.10
+ OVERALL TOTAL                                                                                              $188.90
 ──────────────────────────────────
 30 cloud resources were detected:
 ∙ 11 were estimated, 6 of which include usage-based costs, see https://infracost.io/usage-file
@@ -109,4 +110,13 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
 
 * Result #1 HIGH Cluster allows plaintext communication.
 * Result #2 LOW Instance does not have performance insights enabled.
+```
+
+
+### Connect to proxySQL locally
+
+SSH in to the instance and once logged in use the following with a password of 'admin'.
+
+```
+mysql -u admin -p -h 127.0.0.1 -P 6032 --prompt='ProxySQLAdmin> '
 ```
