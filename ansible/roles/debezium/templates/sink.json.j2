@@ -10,8 +10,11 @@
     "key.converter.schemas.enable": "true",
     "pk.fields": "id",
     "pk.mode": "record_key",
-    "schema.name.adjustment.mode": "json",
     "time.precision.mode": "connect",
     "topics": "{{ database_prefix }}.{{ database_name }}.posts",
-    "value.converter.schemas.enable": "true"
+    "value.converter.schemas.enable": "true",
+    "transforms.route.regex": "(?:[^\\.]+)\\.(?:[^\\.]+)\\.(.+)",
+    "transforms.route.replacement": "$1",
+    "transforms.route.type": "org.apache.kafka.connect.transforms.RegexRouter",
+    "transforms": "route"
 }
