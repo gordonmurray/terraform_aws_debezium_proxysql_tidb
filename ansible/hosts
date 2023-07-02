@@ -2,7 +2,5 @@
 localhost ansible_connection=local
 
 [debezium]
-54.229.233.216
 
 [proxysql]
-54.229.230.75

@@ -2,11 +2,23 @@ proxysql_admin_password: "admin"
 proxysql_monitor_password: "admin"
 
 # RDS instance
-database_host: "my-database.ccxt2rwryns5.eu-west-1.rds.amazonaws.com"
-database_name: "database1"
-database_username: "2CZGRJGGHyGjUV5.user1"
-database_password: "password1"
+database_host: "xxxxxxxxxx.rds.amazonaws.com"
 database_prefix: "rds"
+database_name: "database1"
+database_root_username: ""
+database_root_password: ""
+database_username: ""
+database_password: ""
 
 # MSK kafka brokers
-bootstrap_servers: "b-3.kafka.y79al9.c5.kafka.eu-west-1.amazonaws.com:9092,b-1.kafka.y79al9.c5.kafka.eu-west-1.amazonaws.com:9092,b-2.kafka.y79al9.c5.kafka.eu-west-1.amazonaws.com:9092"
+bootstrap_servers: ""
+
+# tidb
+
+tidb_host: "xxxxxxxxxxx.tidbcloud.com"
+tidb_prefix: "" # database users in tidb are prefixed with a string provided by tidb
+tidb_port: "4000"
+tidb_root_username: ""
+tidb_root_password: ""
+tidb_username: ""
+tidb_password: ""
