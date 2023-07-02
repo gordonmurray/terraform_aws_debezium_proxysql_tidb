@@ -1,0 +1,18 @@
+{
+    "auto.create": "true",
+    "auto.evolve": "false",
+    "connection.password": "{{ tidb_password }}",
+    "connection.url": "jdbc:mysql://{{ tidb_host }}:{{ tidb_port }}/{{ database_name }}?verifyServerCertificate=false&useSSL=true&requireSSL=false",
+    "connection.user": "{{ tidb_username }}",
+    "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+    "delete.enabled": "true",
+    "insert.mode": "upsert",
+    "key.converter.schemas.enable": "true",
+    "key.converter": "org.apache.kafka.connect.converters.LongConverter",
+    "pk.fields": "id",
+    "pk.mode": "record_key",
+    "schema.name.adjustment.mode": "json",
+    "time.precision.mode": "connect",
+    "topics": "{{ database_prefix }}.{{ database_name }}.posts",
+    "value.converter.schemas.enable": "true"
+}

@@ -10,3 +10,9 @@ database_prefix: "rds"
 
 # MSK kafka brokers
 bootstrap_servers: ""
+
+# tidb
+tidb_host: "xxxxxxxxxx.tidbcloud.com"
+tidb_port: "4000"
+tidb_username: ""
+tidb_password: ""
