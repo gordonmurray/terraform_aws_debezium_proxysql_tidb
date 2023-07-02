@@ -148,23 +148,16 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
 ```
   results
   ──────────────────────────────────────────
-  passed               37
+  passed               42
   ignored              0
-  critical             0
+  critical             1
   high                 1
   medium               0
   low                  1
 
-  37 passed, 2 potential problem(s) detected.
+  42 passed, 3 potential problem(s) detected.
 
-* Result #1 HIGH Cluster allows plaintext communication.
-* Result #2 LOW Instance does not have performance insights enabled.
-```
-
-### Connect to proxySQL locally
-
-SSH in to the instance and once logged in use the following with a password of 'admin'.
-
-```
-mysql -u admin -p -h 127.0.0.1 -P 6032 --prompt='ProxySQLAdmin> '
+* Result #1 CRITICAL Security group rule allows egress to multiple public internet addresses.
+* Result #2 HIGH Cluster allows plaintext communication.
+* Result #3 LOW Instance does not have performance insights enabled.
 ```
