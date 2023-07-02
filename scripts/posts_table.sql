@@ -10,11 +10,11 @@ use database1;
 
 CREATE TABLE `posts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `author_id` int(11) NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `description` varchar(500) NOT NULL,
-  `content` text NOT NULL,
-  `date` date NOT NULL,
+  `author_id` int(11),
+  `title` varchar(255),
+  `description` varchar(500),
+  `content` text,
+  `date` date,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
