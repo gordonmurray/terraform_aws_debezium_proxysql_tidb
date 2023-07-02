@@ -4,15 +4,64 @@
 
 ![Debezium, proxySQL and TiDB Diagram](files/tiDB.png "Debezium, proxySQL and TiDB Diagram")
 
+## Requirements
+
 To deploy this project you will need:
 
+* An [AWS account](https://aws.amazon.com/free/)
 * [Packer](https://www.packer.io/) (tested on v1.8.5)
 * [Terraform](https://www.terraform.io/) (tested on v1.4.2)
 * [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) ( tested on v2.14.2)
-* An [AWS account](https://aws.amazon.com/free/)
+
+## Step 1 of 4 - Create the Debezium and ProxySQL AMIs using Packer
+
+```
+cd packer
+
+# validate files
+packer validate --var-file=variables.json proxysql_instance.json
+packer validate --var-file=variables.json debezium_instance.json
+
+# build AMIs
+packer build --var-file=variables.json proxysql_instance.json
+packer build --var-file=variables.json debezium_instance.json
+```
+
+## Step 2 of 4 - Deploy the infrastructure using Terraform
+
+```
+terraform init
+terraform apply
+```
+
+Once the infrastructure is in place the next step is to use Ansible to configure ProxySQL and also Debezium.
+
+## Step 3 of 4 - Configure ProxySQL using the Ansible playbook
+
+```
+cd ansible
+
+# Check the ansible playbook
+ansible-playbook playbook.yml -i hosts --syntax-check
+
+# Run the ansible playbook
+ansible-playbook playbook.yml -i hosts
+```
+
+## Step 4 of 4 - Configure Debezium using the Ansible playbook
+
+```
+cd ansible
+
+# Check the ansible playbook
+ansible-playbook playbook.yml -i hosts --syntax-check
+
+# Run the ansible playbook
+ansible-playbook playbook.yml -i hosts
+```
 
 
-### Estimated monthly costs
+## Estimated monthly costs
 
 (Powered by Infracost)
 
@@ -92,7 +141,7 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
   ∙ 1 x aws_msk_configuration
 ```
 
-### Security
+## Security
 
 (powered by TFsec)
 
@@ -111,19 +160,6 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
 * Result #1 HIGH Cluster allows plaintext communication.
 * Result #2 LOW Instance does not have performance insights enabled.
 ```
-
-## Configure Debezium using the Ansible playbook
-
-```
-cd ansible
-
-# Check the ansible playbook
-ansible-playbook playbook.yml -i hosts --syntax-check
-
-# Run the ansible playbook
-ansible-playbook playbook.yml -i hosts
-```
-
 
 ### Connect to proxySQL locally
 

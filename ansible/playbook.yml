@@ -16,5 +16,7 @@
     - vars/main.yml
 
   roles:
-    - debezium # for kafka-connect / debezium connectors
-    #- proxysql # proxysql for managing connections and traffic
+    - rds # to create a database user in the rds instance
+    - tidb # to create a database user in the tidb instance
+    - debezium # to create kafka-connect / debezium source and sink connectors
+    - proxysql # to configure proxysql to write to the RDS and read from tidb

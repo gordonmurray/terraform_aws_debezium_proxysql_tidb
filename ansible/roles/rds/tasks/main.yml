@@ -1,0 +1,12 @@
+---
+- name: Add database user
+  mysql_user:
+    login_host: "{{ database_host }}"
+    login_user: "{{ database_root_username }}"
+    login_password: "{{ database_root_password }}"
+    name: "{{ database_username }}"
+    password: "{{ database_password }}"
+    host: "%"
+    # No spaces between commas in the 'priv' section next
+    priv: "*.*:SELECT,INSERT,ALTER,DELETE,UPDATE,CREATE,REFERENCES,INDEX,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,SHOW VIEW,EVENT"
+    state: present

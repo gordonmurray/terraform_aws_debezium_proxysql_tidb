@@ -1,0 +1,12 @@
+---
+- name: Add database user
+  mysql_user:
+    login_host: "{{ tidb_host }}"
+    login_user: "{{ tidb_root_username }}"
+    login_password: "{{ tidb_root_password }}"
+    name: "{{ tidb_username }}"
+    password: "{{ tidb_password }}"
+    host: "%"
+    # No spaces between commas in the 'priv' section next
+    priv: "*.*:SELECT,INSERT,ALTER,DELETE,UPDATE,CREATE,REFERENCES,INDEX,CREATE TEMPORARY TABLES,LOCK TABLES,EXECUTE,SHOW VIEW,EVENT"
+    state: present
