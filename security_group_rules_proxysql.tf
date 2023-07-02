@@ -9,13 +9,13 @@ resource "aws_security_group_rule" "proxysql_ssh" {
 }
 
 resource "aws_security_group_rule" "proxysql_rds" {
-  type              = "egress"
-  from_port         = 3306
-  to_port           = 3306
-  protocol          = "tcp"
+  type                     = "egress"
+  from_port                = 3306
+  to_port                  = 3306
+  protocol                 = "tcp"
   source_security_group_id = aws_security_group.rds.id
-  security_group_id = aws_security_group.proxysql.id
-  description       = "ProxySQL egress to RDS"
+  security_group_id        = aws_security_group.proxysql.id
+  description              = "ProxySQL egress to RDS"
 }
 
 resource "aws_security_group_rule" "proxysql_tidb" {
