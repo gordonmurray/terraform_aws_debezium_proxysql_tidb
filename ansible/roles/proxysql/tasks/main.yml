@@ -1,0 +1,8 @@
+---
+- import_tasks: global_variables.yml
+
+- import_tasks: hostgroups.yml
+
+- import_tasks: users.yml
+
+- import_tasks: hosts.yml

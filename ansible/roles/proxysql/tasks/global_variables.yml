@@ -1,0 +1,89 @@
+- name: Set interfaces
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-interfaces"
+    value: "0.0.0.0:3306;/var/lib/proxysql/proxysql.sock"
+  notify:
+    - Restart proxysql
+
+- name: Set max connections
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-max_connections"
+    value: "1000"
+  notify:
+    - Restart proxysql
+
+- name: Set timeout
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-long_query_time"
+    value: "1000"
+  notify:
+    - Restart proxysql
+
+- name: Set monitor username
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-monitor_username"
+    value: "{{ tidb_prefix }}.proxymonitor"
+  notify:
+    - Restart proxysql
+
+- name: Set monitor password
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-monitor_password"
+    value: "{{ proxysql_monitor_password }}"
+  notify:
+    - Restart proxysql
+
+- name: Set monitor interval to 30s
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-monitor_connect_interval"
+    value: "30000"
+  notify:
+    - Restart proxysql
+
+- name: Enable SSL
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-have_ssl"
+    value: "true"
+  notify:
+    - Restart proxysql
+
+- name: SSL CA
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-ssl_p2s_ca"
+    value: "/var/lib/proxysql/proxysql-ca.pem"
+  notify:
+    - Restart proxysql
+
+- name: SSL cert
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-ssl_p2s_cart"
+    value: "/var/lib/proxysql/proxysql-cert.pem"
+  notify:
+    - Restart proxysql
+
+- name: SSL key
+  proxysql_global_variables:
+    login_user: "admin"
+    login_password: "{{ proxysql_admin_password }}"
+    variable: "mysql-ssl_p2s_key"
+    value: "/var/lib/proxysql/proxysql-key.pem"
+  notify:
+    - Restart proxysql

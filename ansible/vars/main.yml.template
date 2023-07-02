@@ -2,7 +2,7 @@ proxysql_admin_password: "admin"
 proxysql_monitor_password: "admin"
 
 # RDS instance
-database_host: ""
+database_host: "xxxxxxx.rds.amazonaws.com"
 database_name: "database1"
 database_username: ""
 database_password: ""
@@ -12,7 +12,10 @@ database_prefix: "rds"
 bootstrap_servers: ""
 
 # tidb
-tidb_host: "xxxxxxxxxx.tidbcloud.com"
+
+tidb_prefix: ""
+
+tidb_host: "xxxxxx.tidbcloud.com"
 tidb_port: "4000"
 tidb_username: ""
 tidb_password: ""
