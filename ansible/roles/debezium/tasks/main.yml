@@ -1,0 +1,17 @@
+---
+- name: debug
+  debug:
+    msg: "{{ lookup('template', 'source.json.j2') }}"
+
+# Create or update a connector
+- name: Perform a PUT to create or update a Source Connector
+  ansible.builtin.uri:
+    url: http://localhost:8083/connectors/mariadb_source/config
+    method: PUT
+    headers:
+      Content-Type: "application/json"
+    body_format: json
+    body: "{{ lookup('template', 'source.json.j2') }}"
+    status_code:
+      - 200
+      - 201

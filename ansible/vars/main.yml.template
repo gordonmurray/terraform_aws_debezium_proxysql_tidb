@@ -1,0 +1,12 @@
+proxysql_admin_password: "admin"
+proxysql_monitor_password: "admin"
+
+# RDS instance
+database_host: ""
+database_name: "database1"
+database_username: ""
+database_password: ""
+database_prefix: "rds"
+
+# MSK kafka brokers
+bootstrap_servers: ""

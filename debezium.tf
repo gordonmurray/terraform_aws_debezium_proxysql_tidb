@@ -37,11 +37,7 @@ resource "aws_instance" "debezium" {
   }
 
   user_data = templatefile("files/user_data.sh", {
-    brokers           = aws_msk_cluster.kafka.bootstrap_brokers
-    database_host     = aws_db_instance.default.address
-    database_username = aws_db_instance.default.username
-    database_password = random_password.password.result
-    database_schema   = "sample_database"
+    brokers = aws_msk_cluster.kafka.bootstrap_brokers
   })
 
 }

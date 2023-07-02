@@ -112,6 +112,18 @@ Project: gordonmurray/terraform_aws_debezium_proxysql_tidb
 * Result #2 LOW Instance does not have performance insights enabled.
 ```
 
+## Configure Debezium using the Ansible playbook
+
+```
+cd ansible
+
+# Check the ansible playbook
+ansible-playbook playbook.yml -i hosts --syntax-check
+
+# Run the ansible playbook
+ansible-playbook playbook.yml -i hosts
+```
+
 
 ### Connect to proxySQL locally
 
